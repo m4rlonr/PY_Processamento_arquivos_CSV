@@ -16,12 +16,13 @@ for item in pagina.iter_rows(min_row=2):
     if(type(data) == str):
         hora = int(data.split(" ")[1].split(":")[0])
     else:
-        quantidades.append({"Horas": pivo, "Quantidade": contador})
+        quantidades.append({"Horas": pivo, "Quantidade": acumulador * 8})
     if(pivo == hora):
-        contador += 1
+        if(type(item[5].value) == int):
+            acumulador += item[5].value
     else:
-        quantidades.append({"Horas": pivo, "Quantidade": contador})
+        quantidades.append({"Horas": pivo, "Quantidade": acumulador * 8})
         pivo = hora
-        contador = 0
+        acumulador += item[5].value
 
 print(quantidades)
